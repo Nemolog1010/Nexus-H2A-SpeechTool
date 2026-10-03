@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dev dependencies
+        run: >
+          npm install --no-save --no-package-lock --no-audit --no-fund
+          typescript@5.6.3
+          @earendil-works/pi-coding-agent@1.0.0
+          @earendil-works/pi-tui@1.0.0
+          typebox
+
+      - name: Type-check extensions
+        run: npx tsc --noEmit -p tsconfig.json
+
+      - name: Validate package.json
+        run: node -e "JSON.parse(require('fs').readFileSync('package.json','utf8'))"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Python syntax check
+        run: |
+          files="$(git ls-files '*.py')"
+          if [ -n "$files" ]; then python -m py_compile $files; fi
+
+      - name: Shell syntax check
+        run: |
+          for f in $(git ls-files '*.sh'); do bash -n "$f"; done

@@ -1,5 +1,8 @@
 # Nexus-H2A SpeechTool
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![CI](https://github.com/Nemolog1010/Nexus-H2A-SpeechTool/actions/workflows/ci.yml/badge.svg)](https://github.com/Nemolog1010/Nexus-H2A-SpeechTool/actions/workflows/ci.yml)
+
 Voice suite for [pi](https://pi.dev): **text-to-speech** and **speech-to-text**
 in Italian, English, and Chinese. Distributed as a *pi package* (extensions +
 skills).
