@@ -1,0 +1,25 @@
+{
+  "name": "nexus-h2a-speechtool",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Nexus-H2A SpeechTool - warm text-to-speech and speech-to-text for pi (Italian, English, Chinese).",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "tts",
+    "stt",
+    "speech",
+    "whisper",
+    "edge-tts",
+    "voice"
+  ],
+  "license": "MIT",
+  "pi": {
+    "extensions": [
+      "./extensions/*.ts"
+    ],
+    "skills": [
+      "./skills"
+    ]
+  }
+}
