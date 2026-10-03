@@ -1,6 +1,6 @@
 ---
 name: speech-to-text
-description: Transcribe audio files or microphone recordings to text in Italian, English, or Chinese. Use when the user asks to transcribe, "trascrivi", "che cosa ho detto", "converti audio in testo", "speech to text", "STT", or provides an audio/voice recording.
+description: Transcribe audio files or microphone recordings to text in Italian, English, or Chinese, and dictate hands-free with a wake word. Use when the user asks to transcribe, "trascrivi", "che cosa ho detto", "converti audio in testo", "speech to text", "STT", "wake word", "hands-free", or provides an audio/voice recording.
 ---
 
 # Speech to text (it / en / zh)
@@ -33,6 +33,36 @@ socket (no python/ffmpeg process per request).
 - Socket: `${XDG_RUNTIME_DIR:-/tmp}/pi-stt-$(id -u).sock` (`STT_SOCKET` to override).
 - Idle unload after `STT_IDLE_SECONDS` (default 600) to free RAM.
 - `STT_NO_DAEMON=1` uses a cold one-shot process instead.
+
+## Wake word (hands-free start/stop)
+
+`scripts/wake_daemon.py` owns the microphone and runs a streaming
+**sherpa-onnx keyword spotter** (English, open-vocabulary: any typed phrase is
+BPE-tokenized at runtime, no training). The pi extension uses it so you can
+dictate without touching the keyboard:
+
+- the **start phrase** (default `hey hermes`) begins a recording and streams
+  live audio levels to the editor (the “volume graph”);
+- the **stop phrase** (default `stop recording`) ends it, and the transcript is
+  inserted into the editor.
+
+```bash
+# run standalone (needs a python with sherpa_onnx + sounddevice + numpy)
+scripts/wake_daemon.py --socket /tmp/pi-wake.sock \
+  --start-phrase "hey hermes" --stop-phrase "stop recording" --sensitivity 0.5
+```
+
+The KWS model is shared with Hermes: by default it uses
+`~/.hermes/cache/wakewords/` if present, otherwise downloads it once (~13 MB) to
+`~/.cache/pi-wakewords/`. Override with `WAKE_MODEL_DIR`.
+
+In the pi UI use `/wake on|off|start|stop|status` or press `ctrl+shift+w` to
+toggle listening. The extension also shows a live **volume graph** above the
+editor while recording (any path: `ctrl+b`, `ctrl+shift+l`, `/listen`, or wake
+word). Configuration: `WAKE_START_PHRASE`, `WAKE_STOP_PHRASE`,
+`WAKE_SENSITIVITY`, `WAKE_INPUT_DEVICE`, `WAKE_PYTHON`, `WAKE_SOCKET`,
+`WAKE_MAX_SECONDS`, `WAKE_IDLE_SECONDS`, and `WAKE_ENABLED=1` (auto-start with
+the session).
 
 ## Performance notes
 
