@@ -1,7 +1,6 @@
 {
   "name": "nexus-h2a-speechtool",
   "version": "1.0.0",
-  "private": true,
   "description": "Nexus-H2A SpeechTool - warm text-to-speech and speech-to-text for pi (Italian, English, Chinese).",
   "keywords": [
     "pi-package",
@@ -14,6 +13,14 @@
     "voice"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nemolog1010/Nexus-H2A-SpeechTool.git"
+  },
+  "homepage": "https://github.com/Nemolog1010/Nexus-H2A-SpeechTool#readme",
+  "bugs": {
+    "url": "https://github.com/Nemolog1010/Nexus-H2A-SpeechTool/issues"
+  },
   "pi": {
     "extensions": [
       "./extensions/*.ts"

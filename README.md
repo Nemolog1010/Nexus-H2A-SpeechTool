@@ -17,7 +17,7 @@ skills).
 ## Install
 
 ```bash
-# from a local path
+# from a local checkout
 pi install /path/to/Nexus-H2A-SpeechTool
 
 # or from git
@@ -221,3 +221,6 @@ Nexus-H2A-SpeechTool/
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+Third-party components and their licenses are listed in
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
