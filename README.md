@@ -221,8 +221,15 @@ Nexus-H2A-SpeechTool/
 │           ├── stt_client.py
 │           └── wake_daemon.py
 ├── LICENSE
+├── docs/PUBLISHING.md
 └── README.md
 ```
+
+## Releasing
+
+Maintainer notes for the npm release (2FA requirements, the WebAuthn publish
+flow, dead ends, verification steps) live in
+[docs/PUBLISHING.md](docs/PUBLISHING.md).
 
 ## License
 
