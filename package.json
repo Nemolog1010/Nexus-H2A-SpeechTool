@@ -21,6 +21,13 @@
   "bugs": {
     "url": "https://github.com/Nemolog1010/Nexus-H2A-SpeechTool/issues"
   },
+  "files": [
+    "extensions",
+    "skills",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
   "pi": {
     "extensions": [
       "./extensions/*.ts"

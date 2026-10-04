@@ -20,11 +20,14 @@ skills).
 ## Install
 
 ```bash
-# from a local checkout
-pi install /path/to/Nexus-H2A-SpeechTool
+# from npm
+pi install npm:nexus-h2a-speechtool
 
 # or from git
 pi install git:github.com/Nemolog1010/Nexus-H2A-SpeechTool
+
+# or from a local checkout
+pi install /path/to/Nexus-H2A-SpeechTool
 ```
 
 Then restart pi (or run `/reload` in an open session). Verify with `/hotkeys`
